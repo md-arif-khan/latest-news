@@ -9,9 +9,10 @@ const navMenuAdded=()=>{
 }
 navMenuAdded()
 const DisplayMenu=categorys=>{
+  
     const navId=document.getElementById('navId')
    for (const category of categorys) {
- 
+    console.log(category)
     const li =document.createElement('li')
     li.classList.add('nav-item','ms-5','ps-2')
         li.innerHTML=`
@@ -23,8 +24,10 @@ const DisplayMenu=categorys=>{
    
 }
 
-const loadData=(id)=>{
-    
+const loadData=(id)=>{ 
+ 
+    const spinner=document.getElementById('spinner')
+    spinner.classList.remove('d-none')
     const url=`https://openapi.programming-hero.com/api/news/category/${id}`
     fetch(url)
     .then(res=>res.json())
@@ -35,7 +38,8 @@ const loadData=(id)=>{
 }
 loadData('01')
 const displayCard=(data)=>{
-  
+  data.sort((a,b)=>b.total_view>a.total_view?1:b.total_view<a.total_view?-1:0)
+   
     const card=document.getElementById('card')
     card.innerHTML=''
     const showCategory=document.getElementById('howMuchCategory')
@@ -51,14 +55,14 @@ const displayCard=(data)=>{
     
         const rowDiv =document.createElement('div')
         
-        rowDiv.classList.add('row','p-4','bg-white','mb-3')
+        rowDiv.classList.add('row','p-4','bg-white','mb-3','rounded')
         rowDiv.innerHTML=`
         <div class="col-md-4">
         <img style="background-size:cover" src="${item.image_url}" class="img-fluid rounded-start" alt="...">
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title">${item.title}</h5>
+          <h5 class="card-title py-2">${item.title}</h5>
           <p style="text-align:justifys" class="card-text">${item.details.slice(0,250)+'...'}</p>
           <div class="d-flex justify-content-between">
             <div class="d-flex">
@@ -87,6 +91,8 @@ const displayCard=(data)=>{
         
         `
        card.appendChild(rowDiv)
+       const spinner=document.getElementById('spinner')
+       spinner.classList.add('d-none')
     }
     const noData=document.getElementById('no-data')
     noData.classList.add('d-none')
@@ -100,11 +106,11 @@ const loadDetail=(detail)=>{
   .then(data=>displayDetail(data.data[0]))
 }
 const displayDetail=(data)=>{
-  console.log(data)
+
   const modalData=document.getElementById('modal-data')
   modalData.innerHTML= `
     <div class="card">
-    <img style="height:250px;"  src="${data.author.img}" class="card-img-top img-fluid" alt="...">
+    <img style="height:250px;"  src="${data.image_url}" class="card-img-top img-fluid" alt="...">
     <div class="card-body">
       
       <p class="card-text fw-bold">${data.title}</p>
@@ -119,3 +125,7 @@ const displayDetail=(data)=>{
     </div>
   `
 }
+
+document.getElementById('blog').addEventListener('click',function(){
+  window.location='blog.html'
+})
