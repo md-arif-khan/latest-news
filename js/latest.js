@@ -68,13 +68,13 @@ const displayCard=(data)=>{
             <div class="d-flex">
              <img style="width:50px; height:50px; border-radius:50px" class="img-fluid" src="${item.author.img}" alt="Paris">
             <div class="ms-2 pt-1">
-               <p style="font-size:12px" class="m-0">${item.author.name?item.author.name:'No data'}</p>
-               <p style="font-size:12px" class="m-0">${item.author.published_date?item.author.published_date:'No data'}</p>
+               <p style="font-size:12px" class="m-0">${item.author.name?item.author.name:'No Data Available'}</p>
+               <p style="font-size:12px" class="m-0">${item.author.published_date?item.author.published_date:'No Data Available'}</p>
              </div>
              </div>
              <div class="d-flex align-content-center">
               <p><i class="fa-regular fa-eye pe-2"></i></p>
-             <p>${item.total_view?item.total_view:'No data'}</p>
+             <p>${item.total_view?item.total_view:'No Data Available'}</p>
              </div>
              <div class="ps-2">
              <i class="fa-regular fa-star-half-stroke"></i>
@@ -116,9 +116,9 @@ const displayDetail=(data)=>{
       <p class="card-text fw-bold">${data.title}</p>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-item"><span class="">Author Name:</span> ${data.author.name?data.author.name:'No Data'}</li>
-      <li class="list-group-item">Total View: ${data.total_view?data.total_view:'No Data'}</li>
-      <li class="list-group-item">Published:  ${data.author.published_date?data.author.published_date:'No data'}</li>
+      <li class="list-group-item"><span class="">Author Name:</span> ${data.author.name?data.author.name:'No Data Available'}</li>
+      <li class="list-group-item">Total View: ${data.total_view?data.total_view:'No Data Available'}</li>
+      <li class="list-group-item">Published:  ${data.author.published_date?data.author.published_date:'No Data Available'}</li>
       
     </ul>
    
